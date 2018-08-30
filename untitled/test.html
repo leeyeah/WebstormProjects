@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function myClk() {
+            var a = document.getElementById('diva');
+            var collection = a.childNodes;
+            for(i=0;i<collection.length;i++)
+            {
+                console.log(collection[i].nodeName+'|'+collection[i].value);
+
+                var tmp = collection[i];
+                //tmp.has
+
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    <div id="diva">
+        <p>11111111111</p>
+        <span>hello</span>
+        <div>
+            <input type="text" value="texta"/>
+            <input type="text" value="textb"/>
+        </div>
+        <input type="text" value="textc"/>
+    </div>
+    <button type="button" onclick="myClk()">button</button>
+
+</body>
+</html>
