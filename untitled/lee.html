@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+<script>
+    var obj1 = {
+        name:'seven'
+    };
+
+    var obj2 = {
+        name: 'anne'
+    }
+
+    window.name='windows'
+
+    var getName = function(){
+        alert(this.name);
+    };
+
+    //console.log(getName.call(obj2))
+
+    var func = function () {
+        var i =0 ;
+        return function () {
+            i++;
+            window.alert(i);
+        }
+    }
+
+
+    //var f = func();
+
+
+    /*
+    var nodes = document.getElementsByTagName('div');
+    for (var i =0,len=nodes.length;i<len;i++)
+    {
+        (function (i) {
+            nodes[i].onclick = function () {
+                console.log(i)
+            }
+
+        })(i)
+    };
+    */
+
+    var mult = (function () {
+
+        var chache = {};
+        console.log('init cache');
+        return function () {
+            var args = Array.prototype.join.call(arguments,',');
+            console.log(chache);
+            console.log('args args args')
+            console.log(args);
+            if(args in chache){
+                return cache[args];
+            }
+
+            var a =1;
+            for( var i=0,l = arguments.length;i<l;i++){
+                a = a*arguments[i];
+            }
+            chache[args] =a;
+            return a ;
+        }
+    })();
+
+    var mult2 = (function () {
+        var cache = {};
+
+        return function () {
+            var args = Array.prototype.join.call(arguments,',');
+            if(args in cache){
+                return cache[args];
+            }
+
+            var a = 1;
+            for(var i =0,l = arguments.length;i<l;i++){
+                a = a * arguments[i]
+            }
+            return cache[args] = a ;
+        }
+    })();
+
+
+    window.alert(mult2(5,5,6))
+
+
+</script>
+
+</body>
+</html>

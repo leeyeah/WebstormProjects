@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+
+</div>
+
+<div id="content">
+    <span>{{ info }}</span>
+
+</div>
+<br>
+<div>
+    <mycomp title="hi" remark="gate"></mycomp>
+</div>
+</body>
+<script id="tp1" type="x-template">
+    <div>
+        <H1>this is tempplate</H1>
+        <h2> 您输入的是 {{ msg }} {{msg}}</h2>
+        <input v-model="msg">
+        <mycomp title="hi" remark="gate"></mycomp>
+        <button v-on:click="alert2">btn me</button>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component(
+        'mycomp',
+        {
+            props:['title','remark'],
+            template: '<h1> compent {{title}} {{remark}}</h1>'
+        }
+    );
+
+    var vm = new Vue(
+        {
+            el: '#app',
+            data: {
+                msg: '1'
+            },
+            template: '#tp1',
+            methods:{
+                alert2:function () {
+                    window.alert(this.msg);
+                }
+            }
+        }
+    );
+
+    var content = new Vue({
+        el:'#content',
+        data: {
+            'info':{
+                name:'wum',
+                age:12
+            }
+        }
+    })
+</script>
+<script>
+    function f() {
+
+        console.log(vm.$data)
+        console.log(vm)
+    }
+</script>
+
+
+
+[Unit]
+Description=nginx
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+
+Unit]
+Description=nginx
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+
+</html>

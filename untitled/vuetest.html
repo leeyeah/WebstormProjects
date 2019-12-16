@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    .clsa {
+        color: blueviolet;
+    }
+
+</style>
+<body>
+
+<div id="app">
+    <span>{{msg}}</span>
+
+    <div v-html="info"></div>
+    <label for="r1">change color</label>
+    <input type="checkbox" id="r1" v-model="clsa">
+    <br>
+    <div v-bind:class="{'clsa':clsa}">
+        v:bind class cmd
+    </div>
+
+    <runoob></runoob>
+
+    <br>
+
+    <runb></runb>
+
+</div>
+<div>
+
+</div>
+<div>
+    <button type="button" onclick="myclk()"> click</button>
+</div>
+<script>
+    var Child = {
+        template: '<h1>自定义组件!123</h1>'
+    }
+
+    Vue.component(
+        'runoob',
+        {
+            template: '<h1>hello runoobj</h1>'
+        }
+    )
+    var app = new Vue(
+        {
+            el: '#app',
+            data: {
+                msg: "hello",
+                info: '<h1>world</h1>',
+                clsa: false
+            },
+            components: {
+                // <runoob> 将只在父模板可用
+                'runb': Child
+            }
+
+        }
+    )
+
+
+</script>
+<script>
+    function myclk() {
+
+        app.$data.msg = "223r"
+        console.log('dddddddddd')
+    }
+</script>
+
+</body>
+</html>
